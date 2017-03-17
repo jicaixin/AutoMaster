@@ -25,6 +25,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.automaster.view.fragment.FragmentMe;
+import com.automaster.view.fragment.FragmentShop;
+import com.automaster.view.fragment.Fragment_main;
 import com.easemob.EMConnectionListener;
 import com.easemob.EMError;
 import com.easemob.chat.CmdMessageBody;
@@ -52,6 +55,7 @@ import com.juns.wechat.dialog.TitleMenu.TitlePopup.OnItemOnClickListener;
 import com.juns.wechat.view.UpdateService;
 import com.juns.wechat.view.activity.AddGroupChatActivity;
 import com.juns.wechat.view.activity.GetMoneyActivity;
+import com.juns.wechat.view.activity.LoginActivity;
 import com.juns.wechat.view.activity.PublicActivity;
 import com.juns.wechat.view.fragment.Fragment_Dicover;
 import com.juns.wechat.view.fragment.Fragment_Friends;
@@ -60,6 +64,9 @@ import com.juns.wechat.view.fragment.Fragment_Profile;
 import com.juns.wechat.zxing.CaptureActivity;
 
 public class MainActivity extends FragmentActivity implements OnClickListener {
+	
+	public static final int REQUEST_CODE_CAPTURE = 100;
+	public static final int REQUEST_CODE_SCAN_CERTIFICATE = 101;
 	private TextView txt_title;
 	private ImageView img_right;
 	private WarnTipDialog Tipdialog;
@@ -70,10 +77,15 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 	private TextView unreadAddressLable;// 未读通讯录textview
 	private TextView unreadFindLable;// 发现
 	private Fragment[] fragments;
-	public Fragment_Msg homefragment;
+	
+	
+	public Fragment_main homefragment;
+//	public Fragment_Msg homefragment;
 	private Fragment_Friends contactlistfragment;
-	private Fragment_Dicover findfragment;
-	private Fragment_Profile profilefragment;
+//	private Fragment_Dicover findfragment;
+	private FragmentShop shopFragment;
+//	private Fragment_Profile profilefragment;
+	private FragmentMe meFragment;
 	private ImageView[] imagebuttons;
 	private TextView[] textviews;
 	private String connectMsg = "";;
@@ -98,12 +110,15 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		unreaMsgdLabel = (TextView) findViewById(R.id.unread_msg_number);
 		unreadAddressLable = (TextView) findViewById(R.id.unread_address_number);
 		unreadFindLable = (TextView) findViewById(R.id.unread_find_number);
-		homefragment = new Fragment_Msg();
+//		homefragment = new Fragment_Msg();
+		homefragment = new Fragment_main();
 		contactlistfragment = new Fragment_Friends();
-		findfragment = new Fragment_Dicover();
-		profilefragment = new Fragment_Profile();
+//		findfragment = new Fragment_Dicover();
+		shopFragment = new FragmentShop();
+//		profilefragment = new Fragment_Profile();
+		meFragment = new FragmentMe();
 		fragments = new Fragment[] { homefragment, contactlistfragment,
-				findfragment, profilefragment };
+				shopFragment, meFragment };
 		imagebuttons = new ImageView[4];
 		imagebuttons[0] = (ImageView) findViewById(R.id.ib_weixin);
 		imagebuttons[1] = (ImageView) findViewById(R.id.ib_contact_list);
@@ -121,10 +136,10 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		getSupportFragmentManager().beginTransaction()
 				.add(R.id.fragment_container, homefragment)
 				.add(R.id.fragment_container, contactlistfragment)
-				.add(R.id.fragment_container, profilefragment)
-				.add(R.id.fragment_container, findfragment)
-				.hide(contactlistfragment).hide(profilefragment)
-				.hide(findfragment).show(homefragment).commit();
+				.add(R.id.fragment_container, meFragment)
+				.add(R.id.fragment_container, shopFragment)
+				.hide(contactlistfragment).hide(meFragment)
+				.hide(shopFragment).show(homefragment).commit();
 		updateUnreadLabel();
 	}
 
@@ -132,7 +147,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		img_right.setVisibility(View.GONE);
 		switch (view.getId()) {
 		case R.id.re_weixin:
-			img_right.setVisibility(View.VISIBLE);
+			img_right.setVisibility(View.GONE);
 			index = 0;
 			if (homefragment != null) {
 				homefragment.refresh();
@@ -143,7 +158,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		case R.id.re_contact_list:
 			index = 1;
 			txt_title.setText(R.string.contacts);
-			img_right.setVisibility(View.VISIBLE);
+			img_right.setVisibility(View.GONE);
 			img_right.setImageResource(R.drawable.icon_titleaddfriend);
 			break;
 		case R.id.re_find:
@@ -153,6 +168,9 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		case R.id.re_profile:
 			index = 3;
 			txt_title.setText(R.string.me);
+			
+			Utils.start_Activity(this, LoginActivity.class);
+			
 			break;
 		}
 		if (currentTabIndex != index) {
@@ -231,7 +249,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 
 	private void initViews() {
 		// 设置消息页面为初始页面
-		img_right.setVisibility(View.VISIBLE);
+		img_right.setVisibility(View.GONE);
 		img_right.setImageResource(R.drawable.icon_add);
 	}
 
@@ -351,6 +369,17 @@ public class MainActivity extends FragmentActivity implements OnClickListener {
 		}
 	}
 
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d(TAG, "onActivityResult"+"requestCode"+requestCode+" resultCode="+resultCode);
+        
+        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE_CAPTURE) {
+        	homefragment.onCaptureCarNumber(data);
+        }
+        
+		super.onActivityResult(requestCode, resultCode, data);
+	}
+	
 	/**
 	 * 连接监听listener
 	 * 

@@ -148,16 +148,16 @@ public class Fragment_Friends extends Fragment implements OnClickListener,
 
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		User user = GloableParams.UserInfos.get(arg2 - 1);
-		if (user != null) {
-			Intent intent = new Intent(getActivity(), FriendMsgActivity.class);
-			intent.putExtra(Constants.NAME, user.getUserName());
-			intent.putExtra(Constants.TYPE, ChatActivity.CHATTYPE_SINGLE);
-			intent.putExtra(Constants.User_ID, user.getTelephone());
-			getActivity().startActivity(intent);
-			getActivity().overridePendingTransition(R.anim.push_left_in,
-					R.anim.push_left_out);
-		}
+//		User user = GloableParams.UserInfos.get(arg2 - 1);
+//		if (user != null) {
+//			Intent intent = new Intent(getActivity(), FriendMsgActivity.class);
+//			intent.putExtra(Constants.NAME, user.getUserName());
+//			intent.putExtra(Constants.TYPE, ChatActivity.CHATTYPE_SINGLE);
+//			intent.putExtra(Constants.User_ID, user.getTelephone());
+//			getActivity().startActivity(intent);
+//			getActivity().overridePendingTransition(R.anim.push_left_in,
+//					R.anim.push_left_out);
+//		}
 
 	}
 }

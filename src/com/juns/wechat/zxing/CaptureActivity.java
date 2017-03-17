@@ -30,6 +30,7 @@ import android.widget.TextView;
 
 import com.google.zxing.BarcodeFormat;
 import com.juns.wechat.Constants;
+import com.juns.wechat.MainActivity;
 import com.juns.wechat.R;
 import com.juns.wechat.SplashActivity;
 import com.juns.wechat.common.Utils;
@@ -60,6 +61,7 @@ public class CaptureActivity extends Activity implements Callback {
 	private boolean vibrate;
 
 	private TextView mTitle;
+	private TextView mCodeScanTips;
 	private ImageView mGoHome;
 	private boolean isNoCute = true;
 
@@ -98,6 +100,13 @@ public class CaptureActivity extends Activity implements Callback {
 		viewfinderView = (ViewfinderView) findViewById(R.id.viewfinder_view);
 		mTitle = (TextView) findViewById(R.id.common_title_msg);
 		mTitle.setText("扫一扫");
+		mCodeScanTips = (TextView) findViewById(R.id.code_scan_tips);
+		
+		Bundle bundle = getIntent().getExtras();
+		if (bundle != null && bundle.getInt("request_type") == MainActivity.REQUEST_CODE_SCAN_CERTIFICATE) {
+			mCodeScanTips.setText("请拍摄行驶证正本");
+		}
+		
 		mGoHome = (ImageView) findViewById(R.id.img_back);
 		mGoHome.setOnClickListener(new OnClickListener() {
 			@Override
@@ -259,22 +268,22 @@ public class CaptureActivity extends Activity implements Callback {
 				return;
 			} else {
 				if (resultString.startsWith("JUNS_WeChat@User")) {
-					String[] name = resultString.split(":");
-					Log.e("", "扫描到的好友为：" + name[1]);
-					Utils.start_Activity(CaptureActivity.this,
-							FriendMsgActivity.class, new BasicNameValuePair(
-									Constants.User_ID, name[1]),
-							new BasicNameValuePair(Constants.NAME, name[1]));
+//					String[] name = resultString.split(":");
+//					Log.e("", "扫描到的好友为：" + name[1]);
+//					Utils.start_Activity(CaptureActivity.this,
+//							FriendMsgActivity.class, new BasicNameValuePair(
+//									Constants.User_ID, name[1]),
+//							new BasicNameValuePair(Constants.NAME, name[1]));
 				} else if (resultString.startsWith("JUNS_WeChat@getMoney")) {
-					String[] msg = resultString.split(":");
-					String[] money_msg = msg[1].split(",");
-					Log.e("", "扫描到的好友ID为：" + money_msg[1]);
-					Utils.start_Activity(
-							CaptureActivity.this,
-							SetMoneyActivity.class,
-							new BasicNameValuePair(Constants.User_ID,
-									money_msg[0]),
-							new BasicNameValuePair(Constants.NAME, money_msg[1]));
+//					String[] msg = resultString.split(":");
+//					String[] money_msg = msg[1].split(",");
+//					Log.e("", "扫描到的好友ID为：" + money_msg[1]);
+//					Utils.start_Activity(
+//							CaptureActivity.this,
+//							SetMoneyActivity.class,
+//							new BasicNameValuePair(Constants.User_ID,
+//									money_msg[0]),
+//							new BasicNameValuePair(Constants.NAME, money_msg[1]));
 				} else if (resultString.startsWith("http://")
 						|| resultString.startsWith("https://")) {
 					Uri uri = Uri.parse(resultString);

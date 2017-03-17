@@ -44,13 +44,13 @@
     
 </RelativeLayout>
 		
-        <TextView
+        <TextView android:id="@+id/code_scan_tips"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="20dp"
-            android:text="请将二维码置于取景框内，即可自动扫描"
+            android:text="请将条形码或二维码置于取景框内，即可自动扫描"
             android:textColor="@color/gray"
             android:textSize="16sp" />
     </RelativeLayout>

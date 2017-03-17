@@ -10,6 +10,7 @@
 		style="@style/MMListItem"
 		android:layout_height="55.0dip"
 		android:background="@drawable/setting_item_selector"
+		android:visibility="gone"
 		android:paddingLeft="15dip">
 		<ImageView
 			android:layout_width="40dip"
@@ -25,14 +26,16 @@
 	<View
 		android:layout_width="match_parent"
 		android:layout_height="1dp"
-		android:background="@color/black2" />
+		android:background="@color/black2" 
+		android:visibility="gone"/>
 	
 		<LinearLayout
 	    android:id="@+id/layout_group"
 		style="@style/MMListItem"
 		android:layout_height="55.0dip"
 		android:background="@drawable/setting_item_selector"
-		android:paddingLeft="15dip">
+		android:paddingLeft="15dip"
+		android:visibility="gone">
 		<ImageView
 			android:layout_width="40dip"
 			android:layout_height="40dip"
@@ -47,14 +50,16 @@
 	<View
 		android:layout_width="match_parent"
 		android:layout_height="1dp"
-		android:background="@color/black2" />
+		android:background="@color/black2" 
+		android:visibility="gone"/>
 	
 		<LinearLayout
 	    android:id="@+id/layout_public"
 		style="@style/MMListItem"
 		android:layout_height="55.0dip"
 		android:background="@drawable/setting_item_selector"
-		android:paddingLeft="15dip">
+		android:paddingLeft="15dip"
+		android:visibility="gone">
 		<ImageView
 			android:layout_width="40dip"
 			android:layout_height="40dip"

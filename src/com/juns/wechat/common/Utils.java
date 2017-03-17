@@ -72,6 +72,28 @@ public class Utils {
 	}
 
 	/**
+	 * 打开Activity
+	 * 
+	 * @param activity
+	 * @param cls
+	 * @param name
+	 */
+	public static void start_ActivityForResult(Activity activity, Class<?> cls, 
+			int requestCode, BasicNameValuePair... name) {
+		Intent intent = new Intent();
+		intent.setClass(activity, cls);
+		if (name != null)
+			for (int i = 0; i < name.length; i++) {
+				intent.putExtra(name[i].getName(), name[i].getValue());
+			}
+		intent.putExtra("request_type", requestCode);
+		activity.startActivityForResult(intent, requestCode);
+		activity.overridePendingTransition(R.anim.push_left_in,
+				R.anim.push_left_out);
+
+	}
+	
+	/**
 	 * 判断是否有网络
 	 */
 	public static boolean isNetworkAvailable(Context context) {

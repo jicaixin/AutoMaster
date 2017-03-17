@@ -95,6 +95,9 @@
             android:name=".view.activity.SettingActivity"  android:screenOrientation="portrait">
         </activity>
         <activity
+            android:name="com.automaster.view.activity.CarFittingListActivity"  android:screenOrientation="portrait">
+        </activity>
+        <activity
             android:name=".view.activity.AlbumActivity"  android:screenOrientation="portrait">
         </activity>
          <activity

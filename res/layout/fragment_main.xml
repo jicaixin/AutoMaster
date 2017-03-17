@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/rl_error_item"
+        layout="@layout/layout_chat_neterror_item"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/logo" />
+    
+    
+    <LinearLayout
+        android:id="@+id/layout_btn"
+        android:layout_width="fill_parent"
+        android:layout_height="80.0dip"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="100dip"
+        android:gravity="center"
+        android:padding="20.0dip" >
+
+        <Button
+            android:id="@+id/btn_search"
+            android:layout_width="fill_parent"
+            android:layout_height="40.0dip"
+            android:background="@drawable/btn_bg_blue"
+            android:padding="10.0dip"
+            android:text="查询"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <TableLayout
+        android:id="@+id/tableLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/layout_btn"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp" >
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical" >
+
+            <TextView android:text="车架号:" />
+
+            <EditText
+                android:id="@+id/chejiahao"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_weight="8"
+                android:paddingBottom="0dp"
+                android:paddingTop="0dp"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/scan_car_number"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon_de_saoyisao" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_gravity="center_vertical"
+                android:text="车型:" />
+
+            <Spinner
+                android:id="@+id/spinner1"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_weight="8"
+                android:entries="@array/car_band" />
+
+            <ImageView
+                android:id="@+id/take_car_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/icon_me_photo" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_gravity="center_vertical"
+                android:text="年份:" />
+
+            <Spinner
+                android:id="@+id/spinner2"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_weight="8"
+                android:entries="@array/car_year"
+                tools:listitem="@android:layout/simple_spinner_item" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/icon_me_photo"
+                android:visibility="invisible" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_gravity="center_vertical"
+                android:text="型号:" />
+
+            <Spinner
+                android:id="@+id/spinner3"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_weight="8"
+                android:entries="@array/car_type" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/icon_me_photo"
+                android:visibility="invisible" />
+        </TableRow>
+    </TableLayout>
+
+    
+
+</RelativeLayout>

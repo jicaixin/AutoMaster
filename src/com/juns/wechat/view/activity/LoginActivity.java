@@ -78,10 +78,11 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 			Utils.finish(LoginActivity.this);
 			break;
 		case R.id.tv_wenti:
-			Utils.start_Activity(LoginActivity.this, WebViewActivity.class,
-					new BasicNameValuePair(Constants.Title, "帮助"),
-					new BasicNameValuePair(Constants.URL,
-							"http://weixin.qq.com/"));
+			// removed by jimin
+//			Utils.start_Activity(LoginActivity.this, WebViewActivity.class,
+//					new BasicNameValuePair(Constants.Title, "帮助"),
+//					new BasicNameValuePair(Constants.URL,
+//							"http://weixin.qq.com/"));
 			break;
 		case R.id.btn_qtlogin:
 			startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
